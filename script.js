@@ -12,7 +12,13 @@ const logoutBtn = document.createElement("button"); // skapar min knapp för utl
     logoutBtn.id = "logoutBtn";
     logoutBtn.innerHTML = "Logout";
 
-// kolla localstorage högst upp här?
+    // Gör en kontroll för att se om vi har något i localstorage.
+    if (localStorage.length > 0) {
+        loggedInSuccessfull(); // Har vi något visas sidan för lyckad inloggning.
+    }
+    else {
+        resetInputdiv(); // Annars kastar vi upp inloggningsformuläret.
+    }
 
 // Kollar så name och password stämmer. 
 function logIn () {
@@ -61,8 +67,12 @@ function addLogoutButton (){
     outputDiv.appendChild(logoutBtn);
     console.log("logout test");
 }
+// Denna funktion återställer sidan till sitt ursprung, den används inuti logout funktionen.
 function resetInputdiv () {
-    inputDiv.innerHTML ="<input type='text' id='userName' placeholder='Enter username...'>" + 
+    inputDiv.innerHTML = "<h4 id='loginHeader'>Please log in!</h4>" +
+    "<input type='text' id='userName' placeholder='Enter username...'>" + // skapar mina input fält, submit knapp på nytt                                                                                           
     "<input type='password' id='password' placeholder='Enter password...'>" + 
-    "<button id='btn' onclick='logIn();'>Submit</button>";
+    "<button id='btn' onclick='logIn();'>Submit</button>";  
+    userName = document.getElementById("userName"); // fick hämta in id på nytt annars låg mina gamla values kvar.
+    userPassword = document.getElementById("password"); // fick hämta in id på nytt annars låg mina gamla values kvar.
 }
