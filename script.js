@@ -1,13 +1,7 @@
 const name = "test"; // Användarnamnet som används för att logga in
 const password = "1234";    // Lösen som används för inloggning
-
-const btn = document.getElementById("btn");  // hämtar in mina element med hjälp av deras id med getElementById metoden.
-const logInHeader = document.getElementById("loginHeader");
-const outputDiv = document.getElementById("output");
+const outputDiv = document.getElementById("output"); // hämtar in mina element med hjälp av deras id med getElementById metoden.
 const inputDiv = document.getElementById("input");
-
-let userName = document.getElementById("userName");
-let userPassword = document.getElementById("password");
 
     // Gör en kontroll för att se om vi har något i localstorage.
     if (localStorage.length > 0) {
@@ -16,11 +10,18 @@ let userPassword = document.getElementById("password");
     else {
         resetInputdiv(); // Annars kastar vi upp inloggningsformuläret.
     }
-// Kollar så name och password stämmer. 
+// Kollar så name och password stämmer, denna funktionen kallas på vid tryck på login knapp.
 function logIn () {
+    let userName = document.getElementById("userName");
+    let userPassword = document.getElementById("password");
     let userNameInput = userName.value; // Hämtar användarnamn från input
     let userPasswordInput = userPassword.value;
-    checkingUserInput(userNameInput, userPasswordInput)
+    if (userNameInput === name && userPasswordInput === password){
+        loggedInSuccessfull();
+    }
+    else {
+        logInFailed();
+    }
 }
 // visar sidan för inloggad, används inuti kontrollen av localstorage + checkingUserInput(). 
 function loggedInSuccessfull () {
@@ -28,26 +29,17 @@ function loggedInSuccessfull () {
     outputDiv.innerHTML = "<h4>Login successfull, welcome back!<h4/>" // sätter innehåll i min tomma div.
     localStorage.setItem("namn", name); // lägger till användarnamn i localstorage
     addLogoutButton();
-    logout();
+    logOut();
 }
 // visar sida för misslyckad inloggning
 function logInFailed() {
     outputDiv.innerHTML = "<h5>Login failed, please try again!<h5/>"
 }
 // funktion som aktiveras och loggar ut när vi trycker på logout.
-function logout () {   
+function logOut () {   
     logoutBtn.onclick = function () {  // funktion som tömmer innerhtml + localstorage när vi trycker på logout.
         localStorage.clear(); // Tömmer localstorage
         resetInputdiv();
-    }
-}
-// Funktion som kollar användarnamn och lösenord
-function checkingUserInput(namn, losen) {  // bör hitta andra namn på parametrar
-    if (namn === name && losen === password){
-        loggedInSuccessfull();
-    }
-    else {
-        logInFailed();
     }
 }
 function addLogoutButton (){ // Lägger till utloggningsknappen, denna används inuti loggedInSuccessfull().
@@ -63,6 +55,4 @@ function resetInputdiv () {
     "<input type='text' id='userName' placeholder='Enter username...'>" + " " + // skapar mina input fält, submit knapp på nytt                                                                                           
     "<input type='password' id='password' placeholder='Enter password...'>" + " " +
     "<button id='btn' onclick='logIn();'>Submit</button>";  
-    userName = document.getElementById("userName"); // fick hämta in id på nytt annars låg mina gamla values kvar.
-    userPassword = document.getElementById("password"); // fick hämta in id på nytt annars låg mina gamla values kvar.
 }
