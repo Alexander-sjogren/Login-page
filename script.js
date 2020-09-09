@@ -16,6 +16,7 @@ function logIn () {
     let userPassword = document.getElementById("password");
     let userNameInput = userName.value; // Hämtar användarnamn från input
     let userPasswordInput = userPassword.value;
+    // Kollar så inloggningsuppgifter stämmer
     if (userNameInput === name && userPasswordInput === password){
         loggedInSuccessfull();
     }
@@ -28,21 +29,22 @@ function loggedInSuccessfull () {
     inputDiv.innerHTML = "";
     outputDiv.innerHTML = "<h4>Login successfull, welcome back!<h4/>" // sätter innehåll i min tomma div.
     localStorage.setItem("namn", name); // lägger till användarnamn i localstorage
-    addLogoutButton();
-    logOut();
+    addLogoutButton(); 
+    logOut(); 
 }
 // visar sida för misslyckad inloggning
 function logInFailed() {
     outputDiv.innerHTML = "<h5>Login failed, please try again!<h5/>"
 }
-// funktion som aktiveras och loggar ut när vi trycker på logout.
+// funktion som aktiveras och loggar ut när vi trycker på logout knappen.
 function logOut () {   
     logoutBtn.onclick = function () {  // funktion som tömmer innerhtml + localstorage när vi trycker på logout.
-        localStorage.clear(); // Tömmer localstorage
+        localStorage.clear(); 
         resetInputdiv();
     }
 }
-function addLogoutButton (){ // Lägger till utloggningsknappen, denna används inuti loggedInSuccessfull().
+// Lägger till utloggningsknappen, denna används inuti loggedInSuccessfull().
+function addLogoutButton (){ 
     const logoutBtn = document.createElement("button"); // skapar min knapp för utloggning.
     logoutBtn.id = "logoutBtn";
     logoutBtn.innerHTML = "Logout";
@@ -54,5 +56,5 @@ function resetInputdiv () {
     inputDiv.innerHTML = "<h4 id='loginHeader'>Please enter your Username and Password</h4>" + " " +
     "<input type='text' id='userName' placeholder='Enter username...'>" + " " + // skapar mina input fält, submit knapp på nytt                                                                                           
     "<input type='password' id='password' placeholder='Enter password...'>" + " " +
-    "<button id='btn' onclick='logIn();'>Submit</button>";  
+    "<button id='btn' onclick='logIn();'>Login</button>";  
 }
