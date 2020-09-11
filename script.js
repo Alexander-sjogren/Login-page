@@ -55,6 +55,6 @@ function resetInputdiv () {
     outputDiv.innerHTML = "";
     inputDiv.innerHTML = "<h4 id='loginHeader'>Please enter your Username and Password</h4>" + " " +
     "<input type='text' id='userName' placeholder='Enter username...'>" + " " + // skapar mina input fält, submit knapp på nytt                                                                                           
-    "<input type='password' id='password' placeholder='Enter password...'>" + " " +
+    "<input type='password' id='password' placeholder='Enter password...'>" + " " + 
     "<button id='btn' onclick='logIn();'>Login</button>";  
 }
