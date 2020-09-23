@@ -1,0 +1,17 @@
+[
+    {
+        "userName":"Alexander Sjögren",
+        "userLogin":"alexander",
+        "userPassword":"1234"
+    },
+    {
+        "userName":"Mats Nilsson",
+        "userLogin":"mats",
+        "userPassword":"4321"
+    },
+    {
+        "userName":"Maja Gräddnos",
+        "userLogin":"maja",
+        "userPassword":"qwer"
+    }
+]
